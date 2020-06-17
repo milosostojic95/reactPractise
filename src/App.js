@@ -1,33 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
+import UserInput from './UserInput/UserInput';
+import UserOutput from './UserOutput/UserOutput';
 
-const App = props => {
-  const [statePersons, setStatePersons] = useState ({
-    persons: [
-      {name: 'Milos'},
-      {name: 'Gole'}
-    ]
-  });
 
-  const switchNameHandler = () => {
-    setStatePersons({
-      persons: [
-        {name: 'Milos'},
-        {name: 'Mare'}
-      ]
-    });
+
+
+class App extends Component {
+  state = {
+    username: 'supermax',
   }
 
-  return (
-    <div className="App">
-      <h1>Ide React Gas</h1>
-      <button onClick={switchNameHandler}>Change Name</button>
-      <Person name={statePersons.persons[0].name}/>
-      <Person name={statePersons.persons[1].name}>This is best lengauge</Person>
-    </div>
-  );
-}
+  inputChangeHeandler = (event) => {
+    this.setState({
+      username: event.target.value
+      }
+    );
+  }
 
+  render() {
+    return (
+      <div className="App">
+
+        <UserInput changed={this.inputChangeHeandler} currentName={this.state.username}/>
+        <UserOutput userName={this.state.username}/>
+        <UserOutput userName="milos"/>
+      </div>
+    );
+  }
+}
 export default App;
