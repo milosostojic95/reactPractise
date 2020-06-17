@@ -9,7 +9,8 @@ class App extends Component {
   state = {
     persons: [
       {name: 'Milos'},
-      {name: 'Gole'}
+      {name: 'Gole'},
+      {name: 'Jon'}
     ],
     showPersons: false
   }
@@ -31,23 +32,24 @@ class App extends Component {
   }
 
   render () {
+    let person = null;
+
+    if(this.state.showPersons) {
+      person = (
+        <div>
+          {this.state.persons.map(person => {
+            return <Person name={person.name}/>
+          })}
+        </div>
+      )
+    }
    return (
     <div className="App">
     <h1>Ide React Gas</h1>
-    <button onClick={this.togglePersonsHandler}>Change Name</button>
-    { this.state.showPersons ?
-      <div>
-        <Person
-          name={this.state.persons[0].name}
-          click={this.switchNameHandler}
-          change={this.changeNameHandler}/>
-        <Person
-          name={this.state.persons[1].name}>This is best lengauge
-        </Person>
-      </div> : null
-    }
-    <UserInput/>
-    <UserOutput userName="milos"/>
+    <button onClick={this.togglePersonsHandler}>Toggle Persons</button>
+    {person}
+    <UserInput change={this.changeNameHandler}/>
+    <UserOutput userName={this.state.persons[0].name}/>
     <UserOutput userName="milos"/>
   </div>
   );

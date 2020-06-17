@@ -3,7 +3,7 @@ const userInput = (props) => {
   return (
     <div>
       <br></br>
-      <input type="text" onChange={props.changed} value={props.currentName}/>
+      <input type="text" onChange={props.change} value={props.currentName}/>
     </div>
   );
 }
