@@ -8,9 +8,9 @@ import UserOutput from './UserOutput/UserOutput';
 class App extends Component {
   state = {
     persons: [
-      {name: 'Milos'},
-      {name: 'Gole'},
-      {name: 'Jon'}
+      {id: '1', name: 'Milos'},
+      {id: '2',name: 'Gole'},
+      {id: '3',name: 'Jon'}
     ],
     showPersons: false
   }
@@ -31,14 +31,24 @@ class App extends Component {
     })
   }
 
+  deletePersonHandler = (personIndex) => {
+    const persons = [...this.state.persons];
+    persons.splice(personIndex,1);
+    this.setState({persons: persons})
+  }
+
   render () {
     let person = null;
 
     if(this.state.showPersons) {
       person = (
         <div>
-          {this.state.persons.map(person => {
-            return <Person name={person.name}/>
+          {this.state.persons.map((person,index) => {
+            return <Person
+              click={() => this.deletePersonHandler(index)}
+              name={person.name}
+              key={person.id}
+              />
           })}
         </div>
       )
