@@ -5,6 +5,7 @@ import Person from './Person/Person';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 import Validation from './ValidationComponent/Validation';
+import Char from './Char/Char';
 
 class App extends Component {
   state = {
@@ -50,6 +51,14 @@ class App extends Component {
     });
   }
 
+  removedChar = (index) => {
+    const text = this.state.inputUser.split('');
+    text.splice(index,1);
+    const updateText = text.join('');
+
+    this.setState({inputUser:updateText})
+  }
+
   render () {
     let person = null;
 
@@ -67,6 +76,15 @@ class App extends Component {
         </div>
       )
     }
+
+    const charList = this.state.inputUser.split('').map( (ch, index) => {
+      return <Char
+      character={ch}
+      key={index}
+      clicked={() => this.removedChar(index)}
+      />
+    });
+
    return (
     <div className="App">
     <h1>Ide React Gas</h1>
@@ -79,6 +97,7 @@ class App extends Component {
     <input type="text" onChange={this.inputChangeHandler} value={this.state.inputUser} />
     <p>{this.state.inputUser}</p>
     <Validation inputLength={this.state.inputUser.length}/>
+    {charList}
   </div>
   );
  }
