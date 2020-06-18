@@ -22,13 +22,18 @@ class App extends Component {
     });
   }
 
-  changeNameHandler = (event) => {
-    this.setState({
-      persons: [
-        {name: event.target.value},
-        {name: 'Mare'}
-      ]
+  changeNameHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex( p => {
+      return p.id === id;
     })
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+    this.setState({persons: persons});
   }
 
   deletePersonHandler = (personIndex) => {
@@ -48,6 +53,7 @@ class App extends Component {
               click={() => this.deletePersonHandler(index)}
               name={person.name}
               key={person.id}
+              change={(event) => this.changeNameHandler( event, person.id )}
               />
           })}
         </div>
@@ -58,8 +64,8 @@ class App extends Component {
     <h1>Ide React Gas</h1>
     <button onClick={this.togglePersonsHandler}>Toggle Persons</button>
     {person}
-    <UserInput change={this.changeNameHandler}/>
-    <UserOutput userName={this.state.persons[0].name}/>
+    <UserInput />
+    <UserOutput/>
     <UserOutput userName="milos"/>
   </div>
   );
