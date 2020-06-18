@@ -4,6 +4,7 @@ import './App.css';
 import Person from './Person/Person';
 import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
+import Validation from './ValidationComponent/Validation';
 
 class App extends Component {
   state = {
@@ -12,7 +13,8 @@ class App extends Component {
       {id: '2',name: 'Gole'},
       {id: '3',name: 'Jon'}
     ],
-    showPersons: false
+    showPersons: false,
+    inputUser: ''
   }
 
   togglePersonsHandler = () => {
@@ -42,6 +44,12 @@ class App extends Component {
     this.setState({persons: persons})
   }
 
+  inputChangeHandler = (event) => {
+    this.setState({
+      inputUser: event.target.value
+    });
+  }
+
   render () {
     let person = null;
 
@@ -67,6 +75,10 @@ class App extends Component {
     <UserInput />
     <UserOutput/>
     <UserOutput userName="milos"/>
+    <hr/>
+    <input type="text" onChange={this.inputChangeHandler} value={this.state.inputUser} />
+    <p>{this.state.inputUser}</p>
+    <Validation inputLength={this.state.inputUser.length}/>
   </div>
   );
  }
