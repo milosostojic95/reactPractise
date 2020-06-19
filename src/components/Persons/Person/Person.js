@@ -15,7 +15,7 @@ const Person = (props) => {
 return (
   <StyledDiv>
     <p onClick={props.click}>This hello world! I am {props.name}, best developer of {Math.floor(Math.random()*30)} developers</p>
-    <input type="text" onChange={props.change} value={props.name}/>
+    <input type="text" onChange={props.changed} value={props.name}/>
   </StyledDiv>
 )
 }

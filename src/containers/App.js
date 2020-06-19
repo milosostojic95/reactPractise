@@ -1,20 +1,12 @@
 import React, { useState, Component } from 'react';
 import logo from '../assets/logo.svg';
 import './App.css';
-import Person from '../Persons/Person/Person';
+import Person from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 import UserInput from '../components/UserInput/UserInput';
 import UserOutput from '../components/UserOutput/UserOutput';
 import Validation from '../components/ValidationComponent/Validation';
-import Char from '../Char/Char';
-import styled from 'styled-components';
-
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-
-    &:hover {
-      background-color: ${props => props.alt ? 'green' : 'red'};
-  }
-`;
+import Char from '../components/Char/Char';
 
 class App extends Component {
   state = {
@@ -75,14 +67,11 @@ class App extends Component {
     if(this.state.showPersons) {
       person = (
         <div>
-          {this.state.persons.map((person,index) => {
-            return <Person
-              click={() => this.deletePersonHandler(index)}
-              name={person.name}
-              key={person.id}
-              change={(event) => this.changeNameHandler( event, person.id )}
-              />
-          })}
+          <Person
+            click={this.deletePersonHandler}
+            changed={this.changeNameHandler}
+            persons={this.state.persons}
+          />
         </div>
       )
     }
@@ -96,21 +85,20 @@ class App extends Component {
     });
 
    return (
-
     <div className="App">
-    <h1>Ide React Gas</h1>
-    <StyledButton alt={this.state.showPersons.toString()} onClick={this.togglePersonsHandler}>
-      Toggle Persons
-    </StyledButton>
-    {person}
-    <UserInput />
-    <UserOutput userName="milos" />
-    <UserOutput userName="milos" />
-    <hr/>
-    <input type="text" onChange={this.inputChangeHandler} value={this.state.inputUser} />
-    <p>{this.state.inputUser}</p>
-    <Validation inputLength={this.state.inputUser.length}/>
-    {charList}
+      <Cockpit
+        click={this.togglePersonsHandler}
+        alt={this.state.showPersons}
+      />
+      {person}
+      <UserInput />
+      <UserOutput userName="milos" />
+      <UserOutput userName="milos" />
+      <hr/>
+      <input type="text" onChange={this.inputChangeHandler} value={this.state.inputUser} />
+      <p>{this.state.inputUser}</p>
+      <Validation inputLength={this.state.inputUser.length}/>
+      {charList}
   </div>
 
   );
