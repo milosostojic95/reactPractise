@@ -6,7 +6,6 @@ import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 import Validation from './ValidationComponent/Validation';
 import Char from './Char/Char';
-import Radium from 'radium';
 
 class App extends Component {
   state = {
@@ -98,6 +97,7 @@ class App extends Component {
     });
 
    return (
+
     <div className="App">
     <h1>Ide React Gas</h1>
     <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
@@ -111,7 +111,8 @@ class App extends Component {
     <Validation inputLength={this.state.inputUser.length}/>
     {charList}
   </div>
+
   );
  }
 }
-export default Radium(App);
+export default App;
