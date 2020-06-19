@@ -11,13 +11,7 @@ const StyledDiv = styled.div`
 `
 
 const Person = (props) => {
-  const style = {
-    '@media (min-width: 500px)' : {
-      width: '450px',
-      textAlign: 'center',
-      margin: '0 auto'
-    }
-  }
+
 return (
   <StyledDiv>
     <p onClick={props.click}>This hello world! I am {props.name}, best developer of {Math.floor(Math.random()*30)} developers</p>

@@ -6,6 +6,15 @@ import UserInput from './UserInput/UserInput';
 import UserOutput from './UserOutput/UserOutput';
 import Validation from './ValidationComponent/Validation';
 import Char from './Char/Char';
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  background-color: ${props => props.alt ? 'red' : 'green'};
+
+    &:hover {
+      background-color: ${props => props.alt ? 'green' : 'red'};
+  }
+`;
 
 class App extends Component {
   state = {
@@ -60,12 +69,6 @@ class App extends Component {
   }
 
   render () {
-    const style = {
-      backgroundColor: 'red',
-      ':hover': {
-        backgroundColor: 'green'
-      }
-    };
 
     let person = null;
 
@@ -82,10 +85,6 @@ class App extends Component {
           })}
         </div>
       )
-      style.backgroundColor = 'yellow';
-      style[':hover'] = {
-        backgroundColor: 'black'
-      }
     }
 
     const charList = this.state.inputUser.split('').map( (ch, index) => {
@@ -100,7 +99,9 @@ class App extends Component {
 
     <div className="App">
     <h1>Ide React Gas</h1>
-    <button style={style} onClick={this.togglePersonsHandler}>Toggle Persons</button>
+    <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>
+      Toggle Persons
+    </StyledButton>
     {person}
     <UserInput />
     <UserOutput userName="milos" />
