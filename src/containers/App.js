@@ -1,11 +1,11 @@
 import React, { useState, Component } from 'react';
-import logo from './logo.svg';
+import logo from '../assets/logo.svg';
 import './App.css';
-import Person from './Person/Person';
-import UserInput from './UserInput/UserInput';
-import UserOutput from './UserOutput/UserOutput';
-import Validation from './ValidationComponent/Validation';
-import Char from './Char/Char';
+import Person from '../Persons/Person/Person';
+import UserInput from '../components/UserInput/UserInput';
+import UserOutput from '../components/UserOutput/UserOutput';
+import Validation from '../components/ValidationComponent/Validation';
+import Char from '../Char/Char';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
@@ -99,7 +99,7 @@ class App extends Component {
 
     <div className="App">
     <h1>Ide React Gas</h1>
-    <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>
+    <StyledButton alt={this.state.showPersons.toString()} onClick={this.togglePersonsHandler}>
       Toggle Persons
     </StyledButton>
     {person}
