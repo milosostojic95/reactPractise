@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
 
 const StyledDiv = styled.div`
@@ -10,14 +10,18 @@ const StyledDiv = styled.div`
   padding: 1rem 0;
 `
 
-const Person = (props) => {
-
-return (
-  <StyledDiv>
-    <p onClick={props.click}>This hello world! I am {props.name}, best developer of {Math.floor(Math.random()*30)} developers</p>
-    <input type="text" onChange={props.changed} value={props.name}/>
-  </StyledDiv>
-)
+class Person extends Component {
+  render (){
+    return (
+      <StyledDiv>
+        <p
+          onClick={this.props.click}>
+            This hello world! I am {this.props.name}, best developer of {Math.floor(Math.random()*30)} developers
+        </p>
+        <input type="text" onChange={this.props.changed} value={this.props.name}/>
+      </StyledDiv>
+    );
+  }
 }
 
 export default Person;
