@@ -9,7 +9,6 @@ const StyledButton = styled.button`
   }
 `;
 
-
 const cockpit = (props) => {
   return (
     <div>

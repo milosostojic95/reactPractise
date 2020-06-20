@@ -1,5 +1,4 @@
-import React, { useState, Component } from 'react';
-import logo from '../assets/logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 import Person from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
