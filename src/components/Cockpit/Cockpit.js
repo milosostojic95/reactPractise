@@ -13,7 +13,7 @@ const cockpit = (props) => {
   useEffect(() => {
     console.log('[Cockpit.js] useEffect')
     setTimeout(() => {
-      alert('save data to cloud')
+      console.log('alert message')
     }, 1000);
     return () => {
       console.log('[Cockpit.js clenup work in useEfect]')

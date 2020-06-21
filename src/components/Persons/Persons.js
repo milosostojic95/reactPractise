@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import Person from './Person/Person';
 
 class Persons extends Component {
+  // second way is to remove component and add pureComponent
   shouldComponentUpdate(nextProps,nextState) {
-    if(nextProps.persons !== this.props.persons) {
+    if(nextProps.persons !== this.props.persons || nextProps.changed !== this.props.changed || nextProps.click !== this.props.click ) {
       return true;
     } else {
       return false;
@@ -21,8 +22,5 @@ class Persons extends Component {
     })
   }
 }
-
-
-
 
 export default Persons;
