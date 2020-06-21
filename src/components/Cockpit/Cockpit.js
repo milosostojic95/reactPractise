@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect,  } from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
@@ -10,6 +10,15 @@ const StyledButton = styled.button`
 `;
 
 const cockpit = (props) => {
+  useEffect(() => {
+    console.log('[Cockpit.js] useEffect')
+    setTimeout(() => {
+      alert('save data to cloud')
+    }, 1000);
+    return () => {
+      console.log('[Cockpit.js clenup work in useEfect]')
+    }
+  })
   return (
     <div>
       <h1>Ide React Gas</h1>
@@ -19,4 +28,4 @@ const cockpit = (props) => {
     </div>
   );
 }
-export default cockpit;
+export default React.memo(cockpit);
