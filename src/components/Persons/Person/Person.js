@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
-
+import Aux from '../../../hoc/Auxiliary';
+// aux moze da se koristi mesto ovog stylediva, kao wrapper
 const StyledDiv = styled.div`
   width: 40%;
   margin: 16px auto;
