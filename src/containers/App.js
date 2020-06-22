@@ -6,7 +6,8 @@ import UserInput from '../components/UserInput/UserInput';
 import UserOutput from '../components/UserOutput/UserOutput';
 import Validation from '../components/ValidationComponent/Validation';
 import Char from '../components/Char/Char';
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Auxiliary';
 
 class App extends Component {
   state = {
@@ -85,7 +86,7 @@ class App extends Component {
     });
 
    return (
-    <WithClass classes={classes.App}>
+    <Aux classes={classes.App}>
       <Cockpit
         click={this.togglePersonsHandler}
         alt={this.state.showPersons}
@@ -99,8 +100,8 @@ class App extends Component {
       <p>{this.state.inputUser}</p>
       <Validation inputLength={this.state.inputUser.length}/>
       {charList}
-    </WithClass>
+    </Aux>
   );
  }
 }
-export default App;
+export default withClass( App, classes.App );
