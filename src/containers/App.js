@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './App.css';
-import Person from '../components/Persons/Persons';
+import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import UserInput from '../components/UserInput/UserInput';
 import UserOutput from '../components/UserOutput/UserOutput';
@@ -8,6 +8,7 @@ import Validation from '../components/ValidationComponent/Validation';
 import Char from '../components/Char/Char';
 import withClass from '../hoc/withClass';
 import Aux from '../hoc/Auxiliary';
+import AuthContext from '../context/auth-context';
 
 class App extends Component {
   state = {
@@ -18,7 +19,8 @@ class App extends Component {
     ],
     showPersons: false,
     inputUser: '',
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   }
 
   togglePersonsHandler = () => {
@@ -32,6 +34,7 @@ class App extends Component {
     const personIndex = this.state.persons.findIndex( p => {
       return p.id === id;
     })
+
     const person = {
       ...this.state.persons[personIndex]
     };
@@ -59,25 +62,29 @@ class App extends Component {
     });
   }
 
+  loginHeandler = () => {
+    this.setState({authenticated: true})
+  }
+
   removedChar = (index) => {
     const text = this.state.inputUser.split('');
     text.splice(index,1);
     const updateText = text.join('');
 
-    this.setState({inputUser:updateText})
+    this.setState({inputUser: updateText})
   }
 
   render () {
-
     let person = null;
 
     if(this.state.showPersons) {
       person = (
         <div>
-          <Person
+          <Persons
             click={this.deletePersonHandler}
             changed={this.changeNameHandler}
             persons={this.state.persons}
+            isAuthenticated={ this.state.authenticated }
           />
         </div>
       )
@@ -93,10 +100,13 @@ class App extends Component {
 
    return (
     <Aux classes={classes.App}>
-      <Cockpit
-        click={this.togglePersonsHandler}
-        alt={this.state.showPersons}
-      />
+      <AuthContext.Provider
+        value={{authenticated: this.state.authenticated, login: this.loginHeandler}}>
+        <Cockpit
+          click={this.togglePersonsHandler}
+          alt={this.state.showPersons}
+        />
+      </AuthContext.Provider>
       {person}
       <UserInput />
       <UserOutput userName="milos" />

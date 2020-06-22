@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Person from './Person/Person';
 
 class Persons extends Component {
+
   // second way is to remove component and add pureComponent
   shouldComponentUpdate(nextProps,nextState) {
     if(nextProps.persons !== this.props.persons || nextProps.changed !== this.props.changed || nextProps.click !== this.props.click ) {
@@ -18,6 +19,7 @@ class Persons extends Component {
         name={person.name}
         key={person.id}
         changed={(event) => this.props.changed( event, person.id )}
+        isAuth= { this.props.isAuthenticated }
       />
     })
   }
